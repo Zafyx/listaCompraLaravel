@@ -6,43 +6,47 @@
         <div class="offset-md-3 col-md-6">
             <div class="card">
                 <div class="card-header text-center">
-                    Modificar película
+                    Modificar producto
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ url('/catalog/edit/' . $pelicula->id) }}" method="POST">
+                    <form action="{{ url('/productos/edit/' . $id) }}" method="POST">
 
                         {{method_field('PUT')}}
 
                         @csrf
 
                         <div class="form-group">
-                            <label for="title">Título</label>
-                            <input type="text" name="title" value="{{ $pelicula->title }}" id="title" class="form-control">
+                            <label for="title">Nombre: </label>
+                            <input type="text" name="nombre" id="nombre" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <input type="number" min="1900" max="2030" value="{{ $pelicula->year }}" name="year" placeholder="A&ntilde;o">
+                            <label for="precio">Precio: </label>
+                            <input type="number" name="precio">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="director" value="{{ $pelicula->director }}" placeholder="Director">
+                            <label for="categoria">Categoría: </label>
+                            <input type="text" name="categoria">
                         </div>
 
                         <div class="form-group">
-                            <input type="url" name="poster" value="{{ $pelicula->poster }}" placeholder="url del poster">
+                            <label for="imagen">Imagen: </label>
+                            <input type="url" name="imagen" placeholder="url de la imagen">
                         </div>
 
                         <div class="form-group">
-                            <label for="synopsis">Resumen</label>
-                            <textarea name="synopsis" id="synopsis" class="form-control" rows="3">{{ $pelicula->synopsis }}</textarea>
+                            <label for="descripcion">Descripción: </label>
+                            <textarea name="descripcion" id="descripcion" class="form-control" rows="3"></textarea>
                         </div>
 
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
-                                Modificar película
+                                Modificar producto
                             </button>
                         </div>
+
 
                     </form>
 
