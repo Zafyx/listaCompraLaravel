@@ -13,12 +13,16 @@
             </div>
             <div class="col-sm-8">
 
-                <h3>Nombre: {{$producto[0]}}</h3>
-                <h3>Categoría: {{$producto[1]}}</h3>
+                <h3>Nombre: {{$producto->nombre}}</h3>
+                <h3>Categoría: {{$producto->categoria}}</h3>
 
+                @if ($producto->pendiente==true)
                 <a class="btn btn-success" href="">Comprado</a>
+                @else
+                <a class="btn btn-info" href="">Comprar</a>
+                @endif
 
-                <a class="btn btn-warning" href="{{ url('/productos/edit/' . $id ) }}">
+                <a class="btn btn-warning" href="{{ url('/productos/edit/' . $producto->id ) }}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 Editar Producto</a><br>
             <a class="btn btn-outline-info" href="{{ action('ProductoController@getIndex') }}">Volver al listado</a>
