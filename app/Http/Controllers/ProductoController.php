@@ -18,23 +18,41 @@ class ProductoController extends Controller
 		{
 			$producto = Producto::findOrFail($id);
 		    return view('productos.show')
-		    			->with('producto', $producto)
-		    			->with('id', $id);
+		    			->with('producto', $producto);
 		}
 		public function getCreate()
 		{
 		    return view('productos.create');
 		}
-		public function postCreate()
+		public function postCreate(Request $request)
 		{
-		    return view('productos.create');
+			Producto::create([
+				'nombre' => $request->nombre,
+				'precio' => $request->precio,
+				'categoria' => $request->categoria,
+				'imagen' => $request->imagen,
+				'descripcion' => $request->descripcion
+			]);
+
+		    return redirect('/productos');
 		}
 		public function getEdit($id)
 		{
 			$producto = Producto::findOrFail($id);
 		    return view('productos.edit')
-		    			->with('producto', $producto)
-		    			->with('id', $id);
+		    			->with('producto', $producto);
+		}
+		public function putEdit(Request $request, $id)
+		{
+			$producto = Producto::findOrFail($id);
+	        $producto->nombre = $request->nombre;
+	        $producto->precio = $request->precio;
+	        $producto->categoria = $request->categoria;
+	        $producto->imagen = $request->imagen;
+	        $producto->descripcion = $request->descripcion;
+
+	        $producto->save();
+	        return redirect('/productos/show/' . $producto->id);
 		}
 
 	}
