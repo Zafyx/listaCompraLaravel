@@ -55,4 +55,15 @@ class ProductoController extends Controller
 	        return redirect('/productos/show/' . $producto->id);
 		}
 
+		public function putComprar(Request $request, $id)
+		{
+			$producto = Producto::findOrFail($id);
+			if ($producto->pendiente==false) {
+				$producto->pendiente =true;
+			} else {
+				$producto->pendiente = false;
+			}
+	        $producto->save();
+	        return redirect('/productos/show/' . $producto->id);
+		}
 	}
